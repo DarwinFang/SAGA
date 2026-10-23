@@ -1,0 +1,100 @@
+{
+  "estimator": {
+    "regularization": [
+      0.0001,
+      0.001,
+      0.01
+    ],
+    "pca_dimension": 64
+  },
+  "encoder": {
+    "name": "intfloat/e5-large-v2",
+    "revision": "f169b11e22de13617baa190a028a32f3493550b6",
+    "max_length": 512,
+    "pooling": "attention-mask mean",
+    "prefix": "query: ",
+    "normalize": true
+  },
+  "sources": [
+    {
+      "name": "Qwen2.5-7B-Instruct",
+      "model": "Qwen/Qwen2.5-7B-Instruct"
+    },
+    {
+      "name": "Llama-3.1-8B-Instruct",
+      "model": "meta-llama/Llama-3.1-8B-Instruct"
+    },
+    {
+      "name": "deepseek-llm-7b-chat",
+      "model": "deepseek-ai/deepseek-llm-7b-chat"
+    },
+    {
+      "name": "granite-3.3-8b-instruct",
+      "model": "ibm-granite/granite-3.3-8b-instruct"
+    }
+  ],
+  "datasets": {
+    "Mintaka": {
+      "n": 480,
+      "per_category": 60,
+      "metric": "EM"
+    },
+    "PopQA": {
+      "n": 480,
+      "per_relation": 30,
+      "sampling_seed": 42,
+      "metric": "EM"
+    },
+    "CrowdWSA": {
+      "n": 450,
+      "metric": "GLEU"
+    },
+    "GSM8K": {
+      "n": 500,
+      "sampling_seed": 42,
+      "metric": "Accuracy"
+    }
+  },
+  "generation": {
+    "temperature": 0,
+    "seed": 42,
+    "chat_template_date": "2026-10-01",
+    "max_tokens": {
+      "Mintaka": 64,
+      "PopQA": 64,
+      "CrowdWSA": 96,
+      "GSM8K": 512
+    },
+    "gsm8k_retry_tokens": 1024
+  },
+  "query_control": {
+    "seed": 42,
+    "permutations": 20
+  },
+  "reversal": {
+    "regions": 4,
+    "minimum_per_direction": 12,
+    "seed": 42,
+    "datasets": [
+      "Mintaka",
+      "PopQA"
+    ]
+  },
+  "cases": {
+    "Mintaka": [
+      "7c940f04"
+    ],
+    "PopQA": [
+      "popqa:test:2843211"
+    ],
+    "CrowdWSA": [
+      "T2:203"
+    ],
+    "GSM8K": [
+      "gsm8k:523"
+    ]
+  },
+  "supplementary": {
+    "usc_selector": 0
+  }
+}
